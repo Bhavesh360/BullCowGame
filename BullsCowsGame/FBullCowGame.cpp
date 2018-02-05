@@ -11,29 +11,30 @@ FBullCowGame::FBullCowGame()
 int FBullCowGame::GetMaxTries() const{ return MyMaxTries; }
 int FBullCowGame::GetCurrentTry() const{ return MyCurrentTry; }
 int FBullCowGame::GetWordLength() const { return myHiddenWord.length(); }
+bool FBullCowGame::IsGameWon() const { return isGameWon; }
+
+
 
 void FBullCowGame::Reset()
 {
 	constexpr int MAX_TRIES = 8;
 	MyMaxTries = MAX_TRIES;
 	MyCurrentTry = 1;
-	const std::string HIDDEN_WORD = "Bhavesh";
+	const std::string HIDDEN_WORD = "planet";
 	myHiddenWord = HIDDEN_WORD;
+	isGameWon = false;
 	return;
 }
 
-bool FBullCowGame::IsGameWon() const
-{
-	return false;
-}
+
 
 EGuessStatus FBullCowGame::CheckGuessValidity(std::string guess) const
 {	
-	if (false) {
+	if (!IsIsoGram(guess)) {
 		return EGuessStatus::Not_Isogram;
 	}
 
-	else if (false) {
+	else if (!IsLowerCase(guess)) {
 		return EGuessStatus::Not_LowerCase;
 	}
 	
@@ -46,10 +47,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(std::string guess) const
 	
 }
 
-bool FBullCowGame::CheckLowerCase(std::string guess)
-{
 
-}
 
 BullCowCount FBullCowGame::SubmitGuess(std::string guess) {
 
@@ -74,8 +72,41 @@ BullCowCount FBullCowGame::SubmitGuess(std::string guess) {
 			}
 		}
 	}
+	if (bullCowCount.Bull == GetWordLength()) {
+		isGameWon = true;
+	}
+	else {
+		isGameWon = false;
+	}
 		// and compare against the hidden string increment the appropriate bulls and cows
 
 	return bullCowCount;
 
+}
+
+bool FBullCowGame::IsIsoGram(std::string word) const 
+{	
+	if (word.length() <= 1) {
+		return true;
+	}
+	std::map<char,bool> charMap;
+
+	for (int i = 0; i < word.length(); i++) {
+		word[i] = tolower(word[i]);
+		if (!charMap[word[i]]) {	
+			charMap[word[i]] = true;
+		}
+		else {
+			return false;
+		}
+	}
+
+	return true; 
+}
+
+bool FBullCowGame::IsLowerCase(std::string word) const
+{
+	for (auto letter : word) {
+		return islower(letter);
+	}
 }

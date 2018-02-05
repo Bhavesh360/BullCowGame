@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
+#include <map>
 
 enum class EGuessStatus {
+	Invalid_response,
 	OK,
 	Not_Isogram,
 	Wrong_Length,
@@ -33,4 +35,7 @@ private:
 	int MyCurrentTry;
 	int MyMaxTries;
 	std::string myHiddenWord;
+	bool isGameWon;
+	bool IsIsoGram(std::string) const;
+	bool IsLowerCase(std::string) const;
 };

@@ -1,5 +1,8 @@
-﻿  main.cpp
-  FBullCowGame.cpp
+﻿  FBullCowGame.cpp
+b:\interviewpractise\bullcowgame\bullscowsgame\fbullcowgame.cpp(94): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
+b:\interviewpractise\bullcowgame\bullscowsgame\fbullcowgame.cpp(112): warning C4715: 'FBullCowGame::IsLowerCase': not all control paths return a value
+  Skipping... (no relevant changes detected)
+  main.cpp
   BullsCowsGame.vcxproj -> B:\interviewPractise\BullCowGame\Debug\BullsCowsGame.exe
   BullsCowsGame.vcxproj -> B:\interviewPractise\BullCowGame\Debug\BullsCowsGame.pdb (Partial PDB)
